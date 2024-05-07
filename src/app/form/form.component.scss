@@ -1,0 +1,87 @@
+.container {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 1rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgb(4, 104, 42);
+  padding: 20px;
+  background-color: #dee4df;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; 
+  max-width: 900px;
+ 
+}
+h2{
+  text-transform: uppercase;
+  color:orangered;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  padding: 20px;
+}
+.image-container {
+  flex: 1;
+}
+
+.job-form {
+  width: 100%; 
+  max-width: 400px; 
+}
+
+
+.description-container {
+  flex: 1; 
+}
+
+
+
+
+.terms {
+  font-size: 0.8rem;
+}
+
+.custom-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #45a049;
+}
+
+input[type="text"],
+select,
+input[type="file"],
+input[type="checkbox"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+select:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+.description-text {
+  text-align: justify;
+  text-indent: 20px;
+}
+.terms {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}

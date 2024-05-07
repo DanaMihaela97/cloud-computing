@@ -1,0 +1,50 @@
+<body>
+<div class="container">
+  <div class="form-container">
+    <form class="job-form" [formGroup]="formValue" (submit)="applying()">
+
+      <h2 class="text-center">{{ job?.title }}</h2>
+
+      <div class="form-floating mb-3">
+        <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="First Name" name="firstName">
+        <label for="firstName">First Name</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" formControlName="lastName"class="form-control" id="lastName" placeholder="Last Name" name="lastName">
+        <label for="lastName">Last Name</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" formControlName="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        <label for="email">Email</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="Phone" name="phone">
+        <label for="phone">Phone</label>
+      </div>
+
+     
+
+      <div class="form-group">
+        <label><b>Upload CV:</b></label>
+        <input type="file" id="cv" class="form-control" name="cv" accept=".pdf,.doc,.docx" required>
+      </div> <br>
+
+   
+      
+
+      <button type="submit" class="custom-button ">Apply</button>
+
+    </form>
+  </div>
+  <div class="description-container">
+     <img src="https://www.myamcat.com/blog/wp-content/uploads/2017/08/job-search-remotive-home-1024x601.png"  style="width: 300px; margin-bottom:30px"> 
+    <p class="description-text">{{job?.description}}</p>
+    
+  </div>
+</div>
+
+</body>
+
