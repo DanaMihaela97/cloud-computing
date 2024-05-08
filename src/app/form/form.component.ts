@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../services/api.service';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateModel } from './candidate';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
@@ -54,9 +54,9 @@ constructor(private route: ActivatedRoute, private api:ApiService, private formB
           icon: 'success',
           title: 'Cererea a fost trimisă!',
           text: 'Mulțumim pentru aplicare.',
-        });
-        window.location.href = "/jobs";
-      },
+        }).then(function() {
+        window.location.href = "";
+      })},
       err => {
         console.error('Eroare la trimiterea cererii:', err);
         alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
