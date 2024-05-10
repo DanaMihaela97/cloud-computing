@@ -4,4 +4,5 @@ export class CandidateModel{
     lastName:string='';
     email:string='';
     phone:string='';
+    cv:string='';
 }
