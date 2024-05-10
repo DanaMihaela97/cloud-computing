@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../services/api.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateModel } from './candidate';
-import * as AWS from 'aws-sdk';
 import { PutObjectAclCommand, S3Client, PutObjectCommandInput } from "@aws-sdk/client-s3";
 
 @Component({
   selector: 'app-form',
+  styleUrl: './form.component.scss',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  standalone: true,
+  imports: [ReactiveFormsModule],
 })
 export class FormComponent implements OnInit {
   jobId: any;
