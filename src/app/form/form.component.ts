@@ -71,8 +71,10 @@ export class FormComponent implements OnInit {
 
     const config={
       region:'us-east-1',
+      credentials:{
       accessKeyId: 'ASIA33KXBPWTGW72GUUW',
       secretAccessKey: 'tn+rh+vHIAaxWi5AnfpVpx3AFJG410x4LOIJKoJY'
+      }
     };
 
 
