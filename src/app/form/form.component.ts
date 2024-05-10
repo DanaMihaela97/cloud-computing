@@ -69,6 +69,7 @@ export class FormComponent implements OnInit {
 
 
     const config={
+      region:'us-east-1',
       accessKeyId: 'ASIA33KXBPWTGW72GUUW',
       secretAccessKey: 'tn+rh+vHIAaxWi5AnfpVpx3AFJG410x4LOIJKoJY'
     };
@@ -80,10 +81,12 @@ export class FormComponent implements OnInit {
    
     const client = new S3Client(config);
     const input : PutObjectCommandInput={
-      ACL: "public-read",
       Bucket: "cvs-ccproject",
+      Key: fileName,
+      ACL: "public-read",
       GrantRead: "uri=http://acs.amazonaws.com/groups/global/AllUsers",
-      Key: fileName
+      ContentType:'application/pdf'
+    
     };
     await client.send(new PutObjectAclCommand(input))
 
