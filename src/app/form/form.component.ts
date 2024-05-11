@@ -20,6 +20,15 @@ export class FormComponent implements OnInit {
   formValue!: FormGroup;
   candidate: CandidateModel = new CandidateModel();
   register!: CandidateModel;
+  
+   config={
+    region:'us-east-1',
+    credentials:{
+    accessKeyId: 'ASIA33KXBPWTNFW2WXP2',
+    secretAccessKey: 'zCUBOPRFcZZxJZn3n/mkj/9o2pf/4gm5+4EELMk9'
+    }
+  };
+
 
   constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
@@ -53,7 +62,7 @@ export class FormComponent implements OnInit {
   
     this.api.createUser(this.candidate).subscribe(
       async res => {
-          // Afiseaza mesajul de succes utilizatorului
+      
           Swal.fire({
               icon: 'success',
               title: 'Cererea a fost trimisă!',
@@ -62,11 +71,11 @@ export class FormComponent implements OnInit {
               window.location.href = "";
           });
 
-          // Trimite un mesaj prin SNS pentru a notifica că cererea a fost trimisă cu succes
+       
           try {
-              const snsClient = new SNSClient({ region: 'us-east-1' }); // Înlocuiește 'us-east-1' cu regiunea SNS-ului tău
+              const snsClient = new SNSClient(this.config); 
               const command = new PublishCommand({
-                  TopicArn: 'ARN-ul_topicului_SNS', // Înlocuiește 'ARN-ul_topicului_SNS' cu ARN-ul topicului SNS pe care l-ai creat
+                  TopicArn: 'ARN-ul_topicului_SNS', 
                   Message: 'Cererea pentru job a fost trimisă cu succes!'
               });
               await snsClient.send(command);
@@ -85,20 +94,12 @@ export class FormComponent implements OnInit {
     const file = fileInput.files && fileInput.files.length > 0 ? fileInput.files[0] : null;
 
 
-    const config={
-      region:'us-east-1',
-      credentials:{
-      accessKeyId: 'ASIA33KXBPWTGW72GUUW',
-      secretAccessKey: 'tn+rh+vHIAaxWi5AnfpVpx3AFJG410x4LOIJKoJY'
-      }
-    };
 
-
-    // Numele fișierului pe S3 va fi numele original al fișierului CV
-    const fileName = this.candidate.firstName + "_" + this.candidate.lastName + ".pdf";
-    // Parametrii pentru încărcarea fișierului în S3
    
-    const client = new S3Client(config);
+    const fileName = this.candidate.firstName + "_" + this.candidate.lastName + ".pdf";
+ 
+   
+    const client = new S3Client(this.config);
     const input : PutObjectCommandInput={
       Bucket: "cvs-ccproject",
       Key: fileName,
