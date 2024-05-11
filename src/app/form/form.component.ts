@@ -26,7 +26,8 @@ export class FormComponent implements OnInit {
     credentials:{
     accessKeyId: 'ASIA33KXBPWTNFW2WXP2',
     secretAccessKey: 'zCUBOPRFcZZxJZn3n/mkj/9o2pf/4gm5+4EELMk9'
-    }
+    },
+    customUserAgent: "Access-Control-Allow-Origin: *"
   };
 
 
