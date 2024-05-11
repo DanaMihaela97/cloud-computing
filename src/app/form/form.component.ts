@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { ApiService } from '../services/api.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateModel } from './candidate';
-import { PutObjectAclCommand, S3Client, PutObjectCommandInput } from "@aws-sdk/client-s3";
+import { PutObjectAclCommand, S3Client, PutObjectCommandInput, S3 } from "@aws-sdk/client-s3";
 import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
 
 @Component({
@@ -20,18 +20,23 @@ export class FormComponent implements OnInit {
   formValue!: FormGroup;
   candidate: CandidateModel = new CandidateModel();
   register!: CandidateModel;
-  
+
    config={
     region:'us-east-1',
+    bucketName:'cvs-ccproject',
     credentials:{
     accessKeyId: 'ASIA33KXBPWTNFW2WXP2',
     secretAccessKey: 'zCUBOPRFcZZxJZn3n/mkj/9o2pf/4gm5+4EELMk9'
     },
-    customUserAgent: "Access-Control-Allow-Origin: *"
+    customUserAgent: "Access-Control-Allow-Origin: *",
   };
 
+  
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
+
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) {
+    
+   }
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -95,11 +100,8 @@ export class FormComponent implements OnInit {
     const file = fileInput.files && fileInput.files.length > 0 ? fileInput.files[0] : null;
 
 
-
    
     const fileName = this.candidate.firstName + "_" + this.candidate.lastName + ".pdf";
- 
-   
     const client = new S3Client(this.config);
     const input : PutObjectCommandInput={
       Bucket: "cvs-ccproject",
@@ -110,7 +112,24 @@ export class FormComponent implements OnInit {
     
     };
     await client.send(new PutObjectAclCommand(input))
-
+    try {
+      const snsClient = new SNSClient(this.config);
+      const command = new PublishCommand({
+          TopicArn: 'ARN-ul_topicului_SNS',
+          Message: 'Cererea pentru job a fost trimisă cu succes!',
+          Subject: 'Subiectul mesajului', // Adăugați un subiect pentru email
+          MessageAttributes: {
+              'email': {
+                  DataType: 'String',
+                  StringValue: this.formValue.value.email // Adresa de email din formular
+              }
+          }
+      });
+      await snsClient.send(command);
+      console.log('Mesajul de notificare a fost trimis cu succes către adresa de email:', this.formValue.value.email);
+  } catch (error) {
+      console.error('Eroare la trimiterea mesajului de notificare către adresa de email:', error);
+  }
    
   }
   }
