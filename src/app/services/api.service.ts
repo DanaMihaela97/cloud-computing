@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-  private url: string = 'http://localhost:8080/api/v1/openingjobs';
+  private url: string = 'http://34.235.53.175:7200/api/v1/openingjobs';
 
   constructor(private http: HttpClient) { }
 
