@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateModel } from './candidate';
 import { PutObjectAclCommand, S3Client, PutObjectCommandInput } from "@aws-sdk/client-s3";
+import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
 
 @Component({
   selector: 'app-form',
@@ -51,20 +52,35 @@ export class FormComponent implements OnInit {
     this.candidate.phone = this.formValue.value.phone;
   
     this.api.createUser(this.candidate).subscribe(
-      res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Cererea a fost trimisă!',
-          text: 'Mulțumim pentru aplicare.',
-        }).then(function() {
-        window.location.href = "";
-      })},
+      async res => {
+          // Afiseaza mesajul de succes utilizatorului
+          Swal.fire({
+              icon: 'success',
+              title: 'Cererea a fost trimisă!',
+              text: 'Mulțumim pentru aplicare.',
+          }).then(function() {
+              window.location.href = "";
+          });
+
+          // Trimite un mesaj prin SNS pentru a notifica că cererea a fost trimisă cu succes
+          try {
+              const snsClient = new SNSClient({ region: 'us-east-1' }); // Înlocuiește 'us-east-1' cu regiunea SNS-ului tău
+              const command = new PublishCommand({
+                  TopicArn: 'ARN-ul_topicului_SNS', // Înlocuiește 'ARN-ul_topicului_SNS' cu ARN-ul topicului SNS pe care l-ai creat
+                  Message: 'Cererea pentru job a fost trimisă cu succes!'
+              });
+              await snsClient.send(command);
+              console.log('Mesajul de notificare a fost trimis cu succes prin SNS.');
+          } catch (error) {
+              console.error('Eroare la trimiterea mesajului de notificare prin SNS:', error);
+          }
+      },
       err => {
-        console.error('Eroare la trimiterea cererii:', err);
-        alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
+          console.error('Eroare la trimiterea cererii:', err);
+          alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
       }
-    );
-    
+  );
+
     const fileInput = document.getElementById('cv') as HTMLInputElement;
     const file = fileInput.files && fileInput.files.length > 0 ? fileInput.files[0] : null;
 
