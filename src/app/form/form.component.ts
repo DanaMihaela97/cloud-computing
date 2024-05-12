@@ -34,6 +34,7 @@ export class FormComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
+      cv: [null, Validators.required]
     });
 
     this.route.params.subscribe(params => {

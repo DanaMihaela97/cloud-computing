@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,6 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   private url: string = 'http://34.235.53.175:7200/api/v1/openingjobs';
+  httpOptions = {
+    headers: new HttpHeaders({
+     "Content-Type": "multipart/form-data" 
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +27,6 @@ export class ApiService {
   }
 
   public createUser(data: any) {
-    return this.http.post<any>(`${this.url}/apply`, data);
+    return this.http.post<any>(`${this.url}/apply`, data, this.httpOptions);
   }
 }
