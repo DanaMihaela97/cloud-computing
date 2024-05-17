@@ -16,8 +16,8 @@ export class JobsComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
     this.apiService.getJobs().then(data => {
-      this.joburi = data.json()
-      console.log(data)
+      this.joburi = data;
+      console.log(data);
     }).catch(error => {
       alert('error');
     }
