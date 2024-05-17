@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../services/api.service';
@@ -19,7 +19,7 @@ export class FormComponent implements OnInit {
   candidate: CandidateModel = new CandidateModel();
   selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -34,6 +34,7 @@ export class FormComponent implements OnInit {
       this.jobId = params['id'];
       this.api.getJobById(this.jobId).then(jobData => {
         this.job = jobData;
+        this.cdr.detectChanges();
       }).catch(error => {
         console.error('Error fetching job data:', error);
       }
