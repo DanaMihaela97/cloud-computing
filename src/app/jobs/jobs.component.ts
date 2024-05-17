@@ -10,22 +10,20 @@ import { ApiService } from '../services/api.service';
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.scss'
 })
-export class JobsComponent implements OnInit{
-joburi:any[]=[]
+export class JobsComponent implements OnInit {
+  joburi = []
 
-constructor(private apiService:ApiService, private router:Router){}
-ngOnInit():void{
-  this.apiService.getJobs().subscribe(
-    (res: any) => {
-      this.joburi = res;
-      console.log(res)
-    },
-    error => {
+  constructor(private apiService: ApiService, private router: Router) { }
+  ngOnInit(): void {
+    this.apiService.getJobs().then(data => {
+      this.joburi = data.json()
+      console.log(data)
+    }).catch(error => {
       alert('error');
     }
-  );
-}
-applyForJob(jobId:string){
-  this.router.navigate(['/apply', jobId]);
-}
+    );
+  }
+  applyForJob(jobId: string) {
+    this.router.navigate(['/apply', jobId]);
+  }
 }

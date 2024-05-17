@@ -19,7 +19,7 @@ export class FormComponent implements OnInit {
   candidate: CandidateModel = new CandidateModel();
   selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) {}
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -32,13 +32,11 @@ export class FormComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.jobId = params['id'];
-      this.api.getJobById(this.jobId).subscribe(
-        (jobData: any) => {
-          this.job = jobData;
-        },
-        (error: any) => {
-          console.error('Error fetching job data:', error);
-        }
+      this.api.getJobById(this.jobId).then(jobData => {
+        this.job = jobData;
+      }).catch(error => {
+        console.error('Error fetching job data:', error);
+      }
       );
     });
   }
@@ -52,32 +50,31 @@ export class FormComponent implements OnInit {
 
   applying() {
     const formData: FormData = new FormData();
-    const user={'firstName': this.formValue.value.firstName,
-                'lastName': this.formValue.value.lastName,
-                'email': this.formValue.value.email,
-                'phone': this.formValue.value.phone};
-    formData.append('user', JSON.stringify(user));
-    
+    const user = {
+      'firstName': this.formValue.value.firstName,
+      'lastName': this.formValue.value.lastName,
+      'email': this.formValue.value.email,
+      'phone': this.formValue.value.phone
+    };
+    const userBlob = new Blob([JSON.stringify(user)], { type: "application/json" });
+    formData.append('user', userBlob);
     if (this.selectedFile) {
-        formData.append('cv', this.selectedFile);
+      formData.append('cv', this.selectedFile);
     }
     console.log("FormData:", formData);
 
-    this.api.createUser(formData).subscribe(
-        async res => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Cererea a fost trimisă!',
-                text: 'Mulțumim pentru aplicare.',
-            }).then(function() {
-                window.location.href = "";
-            });
-        },
-        err => {
-            console.error('Eroare la trimiterea cererii:', err);
-            alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
-        }
-    );
-}
+    this.api.createUser(formData).then(res => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Cererea a fost trimisă!',
+        text: 'Mulțumim pentru aplicare.',
+      }).then(function () {
+        window.location.href = "";
+      });
+    }).catch(err => {
+      console.error('Eroare la trimiterea cererii:', err);
+      alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
+    });
+  }
 
 }

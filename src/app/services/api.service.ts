@@ -5,29 +5,45 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-  //private url: string = 'http://localhost:7200/api/v1/openingjobs';
   private url: string = 'http://34.235.53.175:7200/api/v1/openingjobs';
   httpOptions = {
     headers: new HttpHeaders({
-     "Content-Type": 'multipart/form-data'
+      "Content-Type": 'multipart/form-data'
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   public getJobs() {
-    return this.http.get<any[]>(`${this.url}/jobs`);
+    return fetch(`${this.url}/jobs`,
+      {
+        method: 'GET'
+      }
+    ).then(async response => await response.json());
   }
 
   public createJob(data: any) {
-    return this.http.post<any>(`${this.url}/jobs`, data);
+    return fetch(`${this.url}/jobs`,
+      {
+        method: 'POST',
+        body: data
+      }
+    );
   }
 
   public getJobById(id: any) {
-    return this.http.get<any>(`${this.url}/jobs/${id}`);
+    return fetch(`${this.url}/jobs/${id}`,
+      {
+        method: 'GET'
+      }
+    );
   }
 
   public createUser(formData: FormData) {
-    return this.http.post<any>(`${this.url}/apply`, formData, this.httpOptions);
+    return fetch(`${this.url}/apply`,
+      {
+        method: 'POST',
+        body: formData
+      });
   }
 }
