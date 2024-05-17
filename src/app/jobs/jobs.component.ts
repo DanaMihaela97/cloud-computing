@@ -11,7 +11,7 @@ import { ApiService } from '../services/api.service';
   styleUrl: './jobs.component.scss'
 })
 export class JobsComponent implements OnInit {
-  joburi = []
+  joburi:any[] = []
 
   constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
