@@ -34,6 +34,7 @@ export class FormComponent implements OnInit {
       this.jobId = params['id'];
       this.api.getJobById(this.jobId).then(jobData => {
         this.job = jobData;
+        console.log(jobData);
         this.cdr.detectChanges();
       }).catch(error => {
         console.error('Error fetching job data:', error);

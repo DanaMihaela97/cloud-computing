@@ -31,12 +31,22 @@ export class ApiService {
     );
   }
 
-  public getJobById(id: any) {
-    return fetch(`${this.url}/jobs/${id}`,
-      {
+  public async getJobById(id: any): Promise<any> {
+    try {
+      const response = await fetch(`${this.url}/jobs/${id}`, {
         method: 'GET'
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    );
+
+      const jobData = await response.json();
+      return jobData;
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      throw error;
+    }
   }
 
   public createUser(formData: FormData) {
