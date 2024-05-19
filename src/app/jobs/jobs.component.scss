@@ -33,6 +33,10 @@
 .btn-apply {
   width: 100%;
 }
+.btn-apply:hover{ 
+  background-color: blue;
+  color:rgb(255, 255, 255);
+}
 
 .container {
   display: grid;
@@ -46,10 +50,32 @@
   }
 }
 h2{
-  text-transform: uppercase;
   color:orangered;
-  font-size:2.5rem;
+  font-size:3rem;
   text-align: center;
   margin-top:20px;
   margin-bottom:30px;
+  cursor: pointer;
+  font-family:fantasy;
+}
+h3{
+  color:rgb(91, 82, 173);
+  font-size:1.5rem;
+  text-align: center;
+}
+.list-group-item{
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.list-group-item:hover {
+  background-color: #007bff; 
+  color: white;
+}
+.icon{
+  background-image: url('https://freesvg.org/img/location_icon.png');
+  background-size: 20px;
+  background-repeat: no-repeat; 
+  background-position: left center; 
+  padding-left: 25px; 
 }

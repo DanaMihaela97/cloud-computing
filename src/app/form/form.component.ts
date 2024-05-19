@@ -1,16 +1,17 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiService } from '../services/api.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateModel } from './candidate';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form',
   styleUrls: ['./form.component.scss'],
   templateUrl: './form.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
 })
 export class FormComponent implements OnInit {
   jobId: any;

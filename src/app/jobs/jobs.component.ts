@@ -12,18 +12,32 @@ import { ApiService } from '../services/api.service';
 })
 export class JobsComponent implements OnInit {
   joburi:any[] = []
+  filteredByCity: { [key: string]: number } = {};
+  selectedCity: string | null = null;
 
   constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
     this.apiService.getJobs().then(data => {
       this.joburi = data;
-      console.log(data);
+      this.filterJobsByCity();
     }).catch(error => {
       alert('error');
-    }
-    );
+    });
   }
   applyForJob(jobId: string) {
     this.router.navigate(['/apply', jobId]);
+  }
+  filterJobsByCity(): void {
+    this.filteredByCity = this.joburi.reduce((acc: { [key: string]: number }, job: { city: string }) => {
+      acc[job.city] = (acc[job.city] || 0) + 1;
+      return acc;
+    }, {});
+  }
+  
+  selectCity(city:string):void{
+    this.router.navigate(['/filter', city]);
+  }
+  home():void{
+    this.router.navigate(['/']);
   }
 }

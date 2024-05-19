@@ -1,15 +1,27 @@
-<h2>Job Openings</h2>
+<h2 (click)="home()">Explore Career Opportunities</h2>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let job of joburi">
-      <div class="card">
-        <img class="card-img-top img" [src]="job.url" alt="Job Image">
-        <div class="card-body">
-          <h5 class="card-title">{{ job.title }}</h5>
-          <p class="card-text">{{ job.city }}</p>
-          <a [routerLink]="['/apply', job.id]" class="btn btn-primary btn-apply ">Apply</a>
+    <div class="col-md-8 mb-4">
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let job of joburi">
+          <div class="card">
+            <img class="card-img-top img" [src]="job.url" alt="Job Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ job.title }}</h5>
+              <p class="card-text icon">{{ job.city }}</p>
+              <a [routerLink]="['/apply', job.id]" class="btn btn-primary btn-apply">Apply</a>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Available Jobs by City</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let city of filteredByCity | keyvalue" (click)="selectCity(city.key)">
+          {{ city.key }} ({{ city.value }})
+        </li>
+      </ul>
     </div>
   </div>
 </div>

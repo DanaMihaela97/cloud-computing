@@ -1,0 +1,15 @@
+<h2 (click)="home()">Career Opportunities in {{ selectedCity }}</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let job of joburi">
+      <div class="card">
+        <img class="card-img-top img" [src]="job.url" alt="Job Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ job.title }}</h5>
+          <p class="card-text">{{ job.city }}</p>
+          <a [routerLink]="['/apply', job.id]" class="btn btn-primary btn-apply">Apply</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
