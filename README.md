@@ -7,10 +7,10 @@ The frontend of the career platform is built using Angular and hosted on an EC2 
 
 ## Features
 
-Job search with city filters.
-Candidate application form submission.
-CV upload functionality.
-Email notifications upon successful application submission.
+* Job search with city filters.
+* Candidate application form submission.
+* CV upload functionality.
+* Email notifications upon successful application submission.
 
 ## Setup
 
