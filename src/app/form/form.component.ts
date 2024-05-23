@@ -73,7 +73,7 @@ export class FormComponent implements OnInit {
         title: 'Cererea a fost trimisă!',
         text: 'Mulțumim pentru aplicare.',
       }).then(function () {
-        window.location.href = "";
+        window.location.href = "/jobs";
       });
     }).catch(err => {
       console.error('Eroare la trimiterea cererii:', err);
