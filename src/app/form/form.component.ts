@@ -68,15 +68,33 @@ export class FormComponent implements OnInit {
 
     this.api.createUser(formData).then(res => {
       Swal.fire({
-        icon: 'success',
-        title: 'Cererea a fost trimisă!',
-        text: 'Mulțumim pentru aplicare.',
-      }).then(function () {
-        window.location.href = "";
+        icon: 'info',
+        title: 'Check your email!',
+        text: res, 
+        confirmButtonText: 'OK'
+      }).then(result => {
+        if (result.isConfirmed) {
+          this.showSuccessMessage();
+        }
       });
     }).catch(err => {
-      console.error('Eroare la trimiterea cererii:', err);
-      alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
+      console.error('Error submitting the application:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'The application could not be submitted. Please try again later.',
+      });
+    });
+  }
+
+  showSuccessMessage() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Application Submitted Successfully!',
+      text: 'Thank you for applying. You will receive an email shortly.',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      window.location.href = "";
     });
   }
 
