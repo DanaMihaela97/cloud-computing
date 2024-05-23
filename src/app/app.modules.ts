@@ -8,16 +8,18 @@ import { AppComponent } from "./app.component";
 import { ApiService } from "./services/api.service";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HomeComponent } from "./home/home.component";
 
 
 @NgModule({
-    declarations: [FormComponent, JobsComponent],
+    declarations: [FormComponent, JobsComponent, HomeComponent],
     imports:[BrowserModule,
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
         AppRoutingModule,
-        RouterModule
+        RouterModule,
+        
         
     ],
     providers:[ApiService],

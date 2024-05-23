@@ -1,0 +1,38 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://www.iprs.org/wp-content/uploads/2019/11/faq_title.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(36, 5, 65, 0.7); 
+  }
+  .home-content {
+    max-width: 600px;
+    background-color: rgba(191, 187, 207, 0.5); 
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .home-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  .home-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+  }
+.arrow-link {
+    font-size: 3em;
+    text-decoration: none;
+    color: #8abbf0;
+    display: inline-block;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  .arrow-link:hover {
+    color: #0066be;
+    transform: scale(1.2); // mareste la hover
+  }

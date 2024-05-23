@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CandidateModel } from './candidate';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +21,7 @@ export class FormComponent implements OnInit {
   candidate: CandidateModel = new CandidateModel();
   selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
+  constructor(private location: Location, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -79,5 +80,7 @@ export class FormComponent implements OnInit {
       alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
     });
   }
-
+  goBack(): void {
+    this.location.back();
+  }
 }

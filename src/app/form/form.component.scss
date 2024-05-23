@@ -2,10 +2,10 @@
   margin-top: 40px;
   text-align: center;
   font-size: 1rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: rgb(4, 104, 42);
+  font-family:Arial, Helvetica, sans-serif;
+  color: rgb(9, 10, 9);
   padding: 20px;
-  background-color: #dee4df;
+  background-color: #dfe4eb;
   justify-content: center;
   align-items: center;
   display: grid;
@@ -16,9 +16,14 @@
 }
 h2{
   text-transform: uppercase;
-  color:orangered;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:rgb(30, 6, 85);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 20px;
+}
+h4{
+  color:rgb(30, 6, 85);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 10px;
 }
 
 .form-container {
@@ -32,22 +37,17 @@ h2{
   width: 100%; 
   max-width: 400px; 
 }
-
-
 .description-container {
   flex: 1; 
 }
-
-
-
 
 .terms {
   font-size: 0.8rem;
 }
 
 .custom-button {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #1d021d;
+  color: rgb(220, 220, 221);
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -55,7 +55,7 @@ h2{
 }
 
 .custom-button:hover {
-  background-color: #45a049;
+  background-color: #463a45;
 }
 
 input[type="text"],
@@ -84,4 +84,14 @@ input[type="file"]:focus {
   display: flex;
   align-items: center;
   justify-content: space-between; 
+}
+.butonas {
+  background-color: #3a3a3a;
+  color: white;
+  cursor: pointer;
+  margin-left:20px;
+}
+.butonas:hover{
+  background-color: #5d6380;
+  
 }

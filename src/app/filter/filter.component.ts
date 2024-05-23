@@ -3,12 +3,13 @@ import { ApiService } from '../services/api.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
   selector: 'app-filter',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss'
 })
@@ -16,7 +17,7 @@ export class FilterComponent implements OnInit {
   joburi: any[] = [];
   selectedCity: string | null = null;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private location:Location, private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -29,6 +30,9 @@ export class FilterComponent implements OnInit {
     });
   }
   home():void{
-    this.router.navigate(['/']);
+    this.router.navigate(['/jobs']);
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

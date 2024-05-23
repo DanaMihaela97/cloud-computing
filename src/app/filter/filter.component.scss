@@ -46,11 +46,21 @@
     }
   }
   h2{
-    color:orangered;
+    color:rgb(70, 41, 109);
     font-size:2.5rem;
     text-align: center;
     margin-top:20px;
     margin-bottom:30px;
     cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
+ .butonas {
+  background-color: #3a3a3a;
+  color: white;
+  cursor: pointer;
+  margin-left:20px;
+}
+.butonas:hover{
+  background-color: #5d6380;
   
+}

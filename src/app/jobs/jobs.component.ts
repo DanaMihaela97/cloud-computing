@@ -37,7 +37,4 @@ export class JobsComponent implements OnInit {
   selectCity(city:string):void{
     this.router.navigate(['/filter', city]);
   }
-  home():void{
-    this.router.navigate(['/']);
-  }
 }
