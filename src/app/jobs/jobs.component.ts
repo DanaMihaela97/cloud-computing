@@ -2,52 +2,42 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../services/api.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-jobs',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.scss'] // Corectat din styleUrl
+  styleUrl: './jobs.component.scss'
 })
 export class JobsComponent implements OnInit {
-  joburi: any[] = [];
+  joburi:any[] = []
   filteredByCity: { [key: string]: number } = {};
   selectedCity: string | null = null;
 
   constructor(private apiService: ApiService, private router: Router) { }
-
   ngOnInit(): void {
     this.apiService.getJobs().then(data => {
       this.joburi = data;
       this.filterJobsByCity();
     }).catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Eroare',
-        text: 'A apărut o eroare la preluarea joburilor. Te rugăm să încerci din nou mai târziu.',
-        confirmButtonText: 'OK'
-      });
+      alert('error');
     });
   }
-
   applyForJob(jobId: string) {
     this.router.navigate(['/apply', jobId]);
   }
-
   filterJobsByCity(): void {
     this.filteredByCity = this.joburi.reduce((acc: { [key: string]: number }, job: { city: string }) => {
       acc[job.city] = (acc[job.city] || 0) + 1;
       return acc;
     }, {});
   }
-
-  selectCity(city: string): void {
+  
+  selectCity(city:string):void{
     this.router.navigate(['/filter', city]);
   }
-
-  home(): void {
+  home():void{
     this.router.navigate(['/']);
   }
 }

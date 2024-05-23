@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
   candidate: CandidateModel = new CandidateModel();
   selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {}
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -35,10 +35,12 @@ export class FormComponent implements OnInit {
       this.jobId = params['id'];
       this.api.getJobById(this.jobId).then(jobData => {
         this.job = jobData;
+        console.log(jobData);
         this.cdr.detectChanges();
       }).catch(error => {
         console.error('Error fetching job data:', error);
-      });
+      }
+      );
     });
   }
 
@@ -62,36 +64,20 @@ export class FormComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('cv', this.selectedFile);
     }
+    console.log("FormData:", formData);
 
     this.api.createUser(formData).then(res => {
       Swal.fire({
-        icon: 'info',
-        title: 'Check your email!',
-        text: 'Please check your email to confirm your subscription.',
-        confirmButtonText: 'OK'
-      }).then(result => {
-        if (result.isConfirmed) {
-          this.showSuccessMessage();
-        }
+        icon: 'success',
+        title: 'Cererea a fost trimisă!',
+        text: 'Mulțumim pentru aplicare.',
+      }).then(function () {
+        window.location.href = "";
       });
     }).catch(err => {
-      console.error('Error submitting the application:', err);
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'The application could not be submitted. Please try again later.',
-      });
+      console.error('Eroare la trimiterea cererii:', err);
+      alert("Eroare: Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.");
     });
   }
 
-  showSuccessMessage() {
-    Swal.fire({
-      icon: 'success',
-      title: 'Application Submitted Successfully!',
-      text: 'Thank you for applying. You will receive an email shortly.',
-      confirmButtonText: 'OK'
-    }).then(() => {
-      window.location.href = "";
-    });
-  }
 }

@@ -50,10 +50,11 @@ export class ApiService {
     }
   }
 
-  public createUser(formData: FormData): Promise<string> {
-    return fetch(`${this.url}/apply`, {
-      method: 'POST',
-      body: formData
-    }).then(response => response.text());
+  public createUser(formData: FormData) {
+    return fetch(`${this.url}/apply`,
+      {
+        method: 'POST',
+        body: formData
+      });
   }
 }
