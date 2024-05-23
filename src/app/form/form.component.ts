@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
   candidate: CandidateModel = new CandidateModel();
   selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -35,12 +35,10 @@ export class FormComponent implements OnInit {
       this.jobId = params['id'];
       this.api.getJobById(this.jobId).then(jobData => {
         this.job = jobData;
-        console.log(jobData);
         this.cdr.detectChanges();
       }).catch(error => {
         console.error('Error fetching job data:', error);
-      }
-      );
+      });
     });
   }
 
@@ -64,13 +62,12 @@ export class FormComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('cv', this.selectedFile);
     }
-    console.log("FormData:", formData);
 
     this.api.createUser(formData).then(res => {
       Swal.fire({
         icon: 'info',
         title: 'Check your email!',
-        text: res, 
+        text: 'Please check your email to confirm your subscription.',
         confirmButtonText: 'OK'
       }).then(result => {
         if (result.isConfirmed) {
@@ -97,5 +94,4 @@ export class FormComponent implements OnInit {
       window.location.href = "";
     });
   }
-
 }
