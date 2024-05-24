@@ -6,11 +6,9 @@
 }
 .card img {
   width: 60%;
-  max-height: 150px;
-  object-fit: cover; 
-  display: block; 
-  margin-left: auto; 
-  margin-right: auto; 
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card-body {
@@ -24,6 +22,9 @@
 .card-title {
   font-size: 1.2rem;
   font-weight: bold;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 
 .card-text {
