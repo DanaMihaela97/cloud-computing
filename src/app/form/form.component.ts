@@ -20,7 +20,6 @@ export class FormComponent implements OnInit {
   formValue!: FormGroup;
   candidate: CandidateModel = new CandidateModel();
   selectedFile: File | null = null;
-
   constructor(private location: Location, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -83,4 +82,5 @@ export class FormComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
 }
