@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private url: string = 'http://34.235.53.175:7200/api/v1/openingjobs';
- //private url: string = 'http://localhost:7200/api/v1/openingjobs';
+  //private url: string = 'http://34.235.53.175:7200/api/v1/openingjobs';
+ private url: string = 'http://localhost:7200/api/v1/openingjobs';
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": 'multipart/form-data'
