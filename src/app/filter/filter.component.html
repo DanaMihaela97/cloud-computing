@@ -1,5 +1,5 @@
 <h2 (click)="home()">Career Opportunities in {{ selectedCity }}</h2>
-<button type="button" class="btn btn butonas" (click)="goBack()"><</button>
+<button type="button" class="btn btn butonas" (click)="goBack()">Go Back</button>
 <div class="container">
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let job of joburi">
@@ -7,7 +7,7 @@
         <img class="card-img-top img" [src]="job.url" alt="Job Image">
         <div class="card-body">
           <h5 class="card-title">{{ job.title }}</h5>
-          <p class="card-text">{{ job.city }}</p>
+          <p class="card-text icon">{{ job.city }}</p>
           <a [routerLink]="['/apply', job.id]" class="btn btn-primary btn-apply">Apply</a>
         </div>
       </div>

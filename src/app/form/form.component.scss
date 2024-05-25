@@ -64,9 +64,9 @@ h4{
 }
 
 input[type="text"],
-select,
 input[type="file"],
-input[type="checkbox"] {
+input[type="checkbox"],
+select {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
@@ -75,12 +75,18 @@ input[type="checkbox"] {
 }
 
 input[type="text"]:focus,
-select:focus,
-input[type="file"]:focus {
+input[type="file"]:focus,
+input[type="checkbox"]:focus,
+select:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: #1c083d;
+  box-shadow: 0 0 5px rgba(31, 8, 83, 0.5);
 }
+
+input[type="file"] {
+  background-color: #f8f9fa; 
+}
+
 .description-text {
   text-align: justify;
   text-indent: 20px;
@@ -90,16 +96,6 @@ input[type="file"]:focus {
   display: flex;
   align-items: center;
   justify-content: space-between; 
-}
-.butonas {
-  background-color: #3a3a3a;
-  color: white;
-  cursor: pointer;
-  margin-left:20px;
-}
-.butonas:hover{
-  background-color: #5d6380;
-  
 }
 .description-text p {
   margin-bottom: 10px; 
