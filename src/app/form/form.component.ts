@@ -57,7 +57,6 @@ export class FormComponent implements OnInit {
   }
 
   applying() {
-    // Verifică dacă formularul este valid
     if (this.formValue.valid) {
       const formData: FormData = new FormData();
       const user = {
@@ -76,27 +75,26 @@ export class FormComponent implements OnInit {
       this.api.createUser(formData).then(res => {
         Swal.fire({
           icon: 'success',
-          title: 'Cererea a fost trimisă!',
-          text: 'Mulțumim pentru aplicare.',
+          title: 'Your application has been submitted!',
+          text: 'Thank you for applying. Please check your email for further instructions.<br>Subscribe to receive future job alerts.',
         }).then(() => {
           window.location.href = "/jobs";
         });
       }).catch(err => {
-        console.error('Eroare la trimiterea cererii:', err);
+        console.error('Error submitting application:', err);
         Swal.fire({
           icon: 'error',
-          title: 'Eroare!',
-          text: 'Cererea nu a putut fi trimisă. Te rugăm să încerci din nou mai târziu.'
+          title: 'Error!',
+          text: 'Your application could not be submitted. Please try again later.'
         }).then(() => {
           this.resetForm();
         });
       });
     } else {
-      // Dacă formularul nu este valid, afișează un mesaj de eroare și resetează formularul
       Swal.fire({
         icon: 'warning',
-        title: 'Atenție!',
-        text: 'Vă rugăm să completați toate câmpurile din formular.'
+        title: 'Warning!',
+        text: 'Please fill out all fields in the form.'
       }).then(() => {
         this.resetForm();
       });
