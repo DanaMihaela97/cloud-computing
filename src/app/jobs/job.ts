@@ -3,6 +3,7 @@ export class Job {
     title:string='';
     city:string='';
     description:string='';
+    skill:string='';
     url:string='';
   }
   

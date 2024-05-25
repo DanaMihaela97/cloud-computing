@@ -51,10 +51,6 @@
   background-color: blue;
   color: rgb(255, 255, 255);
 }
-.btn-apply:hover{ 
-  background-color: blue;
-  color:rgb(255, 255, 255);
-}
 .header {
   text-align: center;
   margin-bottom: 30px;
@@ -63,14 +59,15 @@
   
 }
 h2{
-  color:rgb(70, 41, 109);
-  font-size:3rem;
+    color:rgb(47, 55, 119);
+  font-size:2.5rem;
   text-align: center;
-  margin-top:20px;
-  margin-bottom:30px;
+  cursor: pointer;
+  padding:40px;
   cursor: pointer;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}.butonas {
+}
+.butonas {
   background-color: #293a72;
   color: white;
   cursor: pointer;

@@ -9,6 +9,8 @@ import { ApiService } from "./services/api.service";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HomeComponent } from "./home/home.component";
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { HomeComponent } from "./home/home.component";
         FormsModule,
         AppRoutingModule,
         RouterModule,
+        MatIconModule
         
         
     ],

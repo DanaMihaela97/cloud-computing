@@ -10,6 +10,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ job.title }}</h5>
               <p class="card-text icon">{{ job.city }}</p>
+              <p style="font-size:0.8rem">Posted on: {{ currentDate | date:'dd MMMM yyyy' }}</p>
               <a [routerLink]="['/apply', job.id]" class="btn btn-primary btn-apply">Apply</a>
             </div>
           </div>

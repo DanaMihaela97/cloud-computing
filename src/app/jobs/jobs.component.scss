@@ -1,7 +1,26 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+}
+
+.row {
+  width: 100%; 
+}
+
+.col-md-8 {
+  flex: 0 0 66.666667%;
+}
+
+.col-md-4 {
+  flex: 0 0 33.333333%; 
+}
+
+
 .card {
   border: 1px solid #ccc;
   border-radius: 5px;
-  height: 300px; 
+  height: 330px; 
   display: flex;
   flex-direction: column;
 }
@@ -40,7 +59,6 @@
 }
 .btn-apply {
   width: 100%;
-  margin-top:24px;
 }
 .btn-apply:hover{ 
   background-color: blue;
@@ -53,12 +71,6 @@
   background-color: #f8f9fa;
   
 }
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top:20px;
-}
 
 @media (max-width: 767px) {
   .container {
@@ -69,8 +81,7 @@ h2{
   color:rgb(47, 55, 119);
   font-size:3rem;
   text-align: center;
-  margin-top:20px;
-  margin-bottom:30px;
+  padding:40px;
   cursor: pointer;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

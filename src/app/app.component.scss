@@ -1,18 +1,20 @@
 .header {
-    background-color: #587692;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .header h1 {
-    margin: 0;
-    font-size: 2em;
-    color:rgb(255, 255, 255);
-  }
-  
-  .header p {
-    margin: 0;
-    font-size: 1.2em;
-    color: #ffffff;
-  }
+  background-color: #587692;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2em;
+  color:rgb(255, 255, 255);
+  font-family: 'w3-monospace';
+}
+
+.header p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #ffffff;
+  font-family: 'w3-monospace';
+}

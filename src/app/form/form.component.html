@@ -1,6 +1,5 @@
-
+<button type="button" class="btn btn butonas" (click)="goBack()">Go Back</button>
 <div class="container">
-  
   <div class="form-container">
     <form class="job-form" [formGroup]="formValue" (submit)="applying()" enctype="multipart/form-data">
       <h2 class="text-center">{{ job?.title }}</h2>
@@ -34,10 +33,15 @@
   </div>
   <div class="description-container">
      <img src="https://www.myamcat.com/blog/wp-content/uploads/2017/08/job-search-remotive-home-1024x601.png"  style="width: 220px; margin-bottom:30px"> 
-     <h4>Requirements</h4>
+ 
      <div class="description-text">
       {{job?.description}} 
   </div>
+  <div class="skills-list">
+  <h4>Requirements</h4>
+    <ul>
+      <li *ngFor="let skill of job?.skills.split('\n')">{{ skill }}</li>
+    </ul>
   </div>
- 
+  </div>
 </div>

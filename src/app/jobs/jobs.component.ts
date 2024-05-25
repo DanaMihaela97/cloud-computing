@@ -14,6 +14,7 @@ export class JobsComponent implements OnInit {
   joburi:any[] = []
   filteredByCity: { [key: string]: number } = {};
   selectedCity: string | null = null;
+  currentDate: Date = new Date(); 
 
   constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
@@ -37,4 +38,5 @@ export class JobsComponent implements OnInit {
   selectCity(city:string):void{
     this.router.navigate(['/filter', city]);
   }
+
 }
