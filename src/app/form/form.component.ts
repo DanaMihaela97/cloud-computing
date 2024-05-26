@@ -76,7 +76,7 @@ export class FormComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Your application has been submitted!',
-          text: 'Thank you for applying. Please check your email for further instructions.<br>Subscribe to receive future job alerts.',
+          html: 'Thank you for applying. Please check your email for further instructions.<br>Subscribe to receive future job alerts.',
         }).then(() => {
           window.location.href = "/jobs";
         });
