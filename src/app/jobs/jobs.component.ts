@@ -17,6 +17,7 @@ export class JobsComponent implements OnInit {
   selectedCity: string | null = null;
   currentDate: Date = new Date();
   selectedExperience: string | null = null;
+  experienceOptions: string[] = ["No experience", "0-1 years", "3-5 years", "> 5 years"];
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -52,7 +53,9 @@ export class JobsComponent implements OnInit {
   }
 
   applyFilters(): void {
-    this.filteredJobs = this.joburi.filter(job => this.filterByExperience(job) && this.filterByCity(job));
+    this.filteredJobs = this.joburi.filter(job =>
+      this.filterByExperience(job) && this.filterByCity(job)
+    );
   }
 
   filterByExperience(job: any): boolean {
