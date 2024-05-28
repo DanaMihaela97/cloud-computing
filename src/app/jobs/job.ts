@@ -4,6 +4,7 @@ export class Job {
     city:string='';
     description:string='';
     skill:string='';
+    experience:string='';
     url:string='';
   }
   

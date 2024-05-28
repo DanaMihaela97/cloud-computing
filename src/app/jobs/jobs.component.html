@@ -1,17 +1,17 @@
-
 <h2>Explore Career Opportunities</h2>
 <div class="container">
   <div class="row">
     <div class="col-md-8 mb-4">
       <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let job of joburi">
+        <div class="col-md-4 mb-4" *ngFor="let job of filteredJobs">
           <div class="card">
             <img class="card-img-top img" [src]="job.url" alt="Job Image">
             <div class="card-body">
               <h5 class="card-title">{{ job.title }}</h5>
               <p class="card-text icon">{{ job.city }}</p>
+              <p style="font-size:0.8rem">Exp required: <b>{{ job.experience }}</b></p>
               <p style="font-size:0.8rem">Posted on: {{ currentDate | date:'dd MMMM yyyy' }}</p>
-              <a [routerLink]="['/apply', job.id]" class="btn btn-primary btn-apply">Apply</a>
+              <a (click)="applyForJob(job.id)" class="btn btn-primary btn-apply">Apply</a>
             </div>
           </div>
         </div>
@@ -20,10 +20,25 @@
     <div class="col-md-4">
       <h3>Available Jobs by City</h3>
       <ul class="list-group">
+        <li class="list-group-item" (click)="selectCity(null)">All Cities</li>
         <li class="list-group-item" *ngFor="let city of filteredByCity | keyvalue" (click)="selectCity(city.key)">
           {{ city.key }} ({{ city.value }})
         </li>
       </ul>
+
+      <h3 style="margin-top:20px;">Available Jobs by Experience</h3>
+      <div class="exp">
+        <input type="radio"  id="all-exp" name="experience" (change)="onExperienceChange(null)" checked>
+        <label for="all-exp" class="label-exp">All experience levels</label><br>
+        <input type="radio" id="no-exp" name="experience" (change)="onExperienceChange('no experience')">
+        <label for="no-exp" class="label-exp">No experience</label><br>
+        <input type="radio" id="0-1" name="experience" (change)="onExperienceChange('0-1 years')">
+        <label for="0-1" class="label-exp">0-1 years</label><br>
+        <input type="radio" id="3-5" name="experience" (change)="onExperienceChange('3-5 years')">
+        <label for="3-5" class="label-exp">3-5 years</label><br>
+        <input type="radio" id="5" name="experience" (change)="onExperienceChange('> 5 years')">
+        <label for="5" class="label-exp">> 5 years</label><br>
+      </div>
     </div>
   </div>
 </div>

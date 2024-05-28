@@ -12,7 +12,6 @@ import { HomeComponent } from "./home/home.component";
 import { MatIconModule } from '@angular/material/icon';
 
 
-
 @NgModule({
     declarations: [FormComponent, JobsComponent, HomeComponent],
     imports:[BrowserModule,
@@ -22,8 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
         AppRoutingModule,
         RouterModule,
         MatIconModule
-        
-        
     ],
     providers:[ApiService],
     bootstrap:[AppComponent]})

@@ -43,6 +43,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 10px; 
+  color:rgb(83, 91, 170);
 }
 .card-text {
   font-size: 1rem;
@@ -94,9 +95,18 @@ h3{
 .list-group-item{
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
 }
 
 .list-group-item:hover {
   background-color: #007bff; 
   color: white;
+}
+.exp{
+font-size: 1rem;
+line-height:1.8;
+}
+.label-exp{
+  margin-left:10px;
+  
 }
